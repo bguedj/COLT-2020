@@ -93,4 +93,5 @@ let calcAllKeys = function (allPapers, allKeys) {
     allKeys.keywords = Array.from(collectKeywords);
     allKeys.session = Array.from(collectSessions);
     allKeys.session.sort();
+    allKeys.all = allKeys.authors.concat(allKeys.titles, allKeys.keywords);
 };

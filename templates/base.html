@@ -70,12 +70,12 @@
     <!-- NAV -->
     {% block header %}
     {% set navigation_bar = [
-    ('index.html', 'Home'),
-    ('calendar.html', 'Schedule'),
+    ('schedule.html', 'Schedule'),
+    ('plain.html', '(plain version)'),
     ('papers.html', 'Papers'),
-    ('workshops.html', 'Workshops'),
-    ('chat.html', 'Chat'),
-    ('about.html', 'Help'),
+    ('keynotes.html', 'Keynotes'),
+    ('subject_areas.html', 'Subject Areas'),
+    ('format.html', 'Conference Format'),
     ] -%}
 
     <nav
@@ -83,7 +83,7 @@
       id="main-nav"
     >
       <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="https://www.colt2020.org">
           <img
              class="logo" src="{{config.logo.image}}"
              height={{config.logo.height | default("auto") | tojson}}
@@ -156,6 +156,7 @@
       <div class="container">
         <p class="float-right"><a href="#">Back to Top</a></p>
         <p class="text-center">© 2020 {{config.organization}}</p>
+        <p class="float-left"><a href="https://github.com/bguedj/COLT-2020">Source code</a></p>
       </div>
     </footer>
 

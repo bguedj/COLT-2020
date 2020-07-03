@@ -59,7 +59,16 @@ body {
 .pp-card-header {
   border: 4px solid #eee;
   font-family: "Exo";
-  height: 340px;
+  height: 220px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.pp-card-header-details {
+  border: 4px solid #eee;
+  font-family: "Exo";
+  height: auto;
   padding-top: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -88,7 +97,7 @@ body {
 }
 
 body .nav-pills .nav-link.active {
-  background-color: #bed972;
+  background-color: #bce6f7;
 }
 
 .container {

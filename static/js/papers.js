@@ -4,12 +4,14 @@ const allKeys = {
     keywords: [],
     session: [],
     titles: [],
+    all: [],
 }
 const filters = {
     authors: null,
     keywords: null,
     session: null,
     title: null,
+    all: null,
 };
 
 let render_mode = 'compact';
@@ -82,16 +84,19 @@ const render = () => {
     else {
         const fList = allPapers.filter(
           d => {
-
               let i = 0, pass_test = true;
               while (i < f_test.length && pass_test) {
                   if (f_test[i][0] === 'titles') {
                       pass_test &= d.content['title'].toLowerCase()
                         .indexOf(f_test[i][1].toLowerCase()) > -1;
 
+                  } else if (f_test[i][0] === 'all') {
+                      let allstrings = d.content['authors'].join(" ") + d.content['keywords'].join(" ") + d.content['title'];
+                      allstrings = allstrings.toLowerCase();
+                      pass_test &= allstrings.indexOf(f_test[i][1].toLowerCase()) > -1;
                   } else {
-                      pass_test &= d.content[f_test[i][0]].indexOf(
-                        f_test[i][1]) > -1
+                    pass_test &= d.content[f_test[i][0]].join(" ").toLowerCase().indexOf(
+                      f_test[i][1].toLowerCase()) > -1
                   }
                   i++;
               }
@@ -114,12 +119,14 @@ const updateFilterSelectionBtn = value => {
 const updateSession = () => {
     const urlSession = getUrlParameter("session");
     if (urlSession) {
-        filters['session'] = urlSession
+        filters['session'] = urlSession;
         d3.select('#session_name').text(urlSession);
+        d3.select('#shuffle').style("visibility", "hidden");
         d3.select('.session_notice').classed('d-none', null);
         return true;
     } else {
         filters['session'] = null
+        d3.select('#shuffle').style("visibility", "visible");
         return false;
     }
 }
@@ -128,7 +135,7 @@ const updateSession = () => {
  * START here and load JSON.
  */
 const start = () => {
-    const urlFilter = getUrlParameter("filter") || 'keywords';
+    const urlFilter = getUrlParameter("filter") || 'all';
     setQueryStringParameter("filter", urlFilter);
     updateFilterSelectionBtn(urlFilter)
 
@@ -136,7 +143,7 @@ const start = () => {
     d3.json('papers.json').then(papers => {
         console.log(papers, "--- papers");
 
-        shuffleArray(papers);
+        // shuffleArray(papers);
 
         allPapers = papers;
         calcAllKeys(allPapers, allKeys);
@@ -199,6 +206,8 @@ d3.select('.reshuffle').on('click', () => {
 
 const keyword = kw => `<a href="papers.html?filter=keywords&search=${kw}"
                        class="text-secondary text-decoration-none">${kw.toLowerCase()}</a>`
+const sessionurl = s => `<a href="papers.html?filter=keywords&session=${s}"
+                        class="text-secondary text-decoration-none">${s}</a>`       
 
 const card_image = (openreview, show) => {
     if (show) return ` <center><img class="lazy-load-img cards_img" data-src="https://iclr.github.io/iclr-images/small/${openreview.id}.jpg" width="80%"/></center>`
@@ -208,10 +217,13 @@ const card_image = (openreview, show) => {
 const card_detail = (openreview, show) => {
     if (show)
         return ` 
-     <div class="pp-card-header">
-        <p class="card-text"> ${openreview.content.TLDR}</p>
-        <p class="card-text"><span class="font-weight-bold">Keywords:</span>
+     <div class="pp-card-header-details">
+        <p class="card-text"> ${openreview.content.TLDR ? openreview.content.TLDR : ''}</p>
+        <p class="card-text"><span class="font-weight-bold">Subject areas:</span>
             ${openreview.content.keywords.map(keyword).join(', ')}
+        </p>
+        <p class="card-text"><span class="font-weight-bold">Presented in:</span>
+            ${openreview.content.session.map(sessionurl).join(', ')}
         </p>
     </div>
 `
@@ -255,18 +267,42 @@ const card_cal = (openreview, i) => `<a class="text-muted" href="webcal://iclr.g
 const card_html = openreview => `
         <div class="pp-card pp-mode-` + render_mode + ` ">
             <div class="pp-card-header">
-            <div class="checkbox-paper ${openreview.content.read ? 'selected' : ''}" style="display: block;position: absolute; bottom:35px;left: 35px;">✓</div>    
-                <a href="poster_${openreview.id}.html"
-                target="_blank"
+            <div class="checkbox-paper ${openreview.content.read ? 'selected' : ''}" style="display: block;position: absolute; bottom:35px;left: 35px; visibility: hidden;">✓</div>            
+                <a href="papers/paper_${openreview.id}.html"
                    class="text-muted">
-                   <h5 class="card-title" align="center"> ${openreview.content.title} </h5></a>
+                   <h5 class="card-title" align="center" ${openreview.content.read ? 'style="color:#2294e0;"' : ''}> ${position_selector(openreview)} ${openreview.content.title} </h5></a>
                 <h6 class="card-subtitle text-muted" align="center">
                         ${openreview.content.authors.join(', ')}
                 </h6>
-                ${card_image(openreview, render_mode !== 'list')}
-                
+                ${zoom_selector(openreview)}
             </div>
                
                 ${card_detail(openreview, (render_mode === 'detail'))}
         </div>`
 
+const zoom_selector = (openreview) => {
+  if (openreview.id.includes("OP")) return '';
+  const urlSession = getUrlParameter("session");
+  const zoom_links = openreview.content.zoom;
+  const sessions = openreview.content.session;
+  let link = ''
+  if (urlSession === sessions[0]) link = zoom_links[0];
+  if (urlSession === sessions[1]) link = zoom_links[1];
+  if (!(link === ''))
+    return '<br /><h6 class="card-subtitle" align="center"> <a href="' + link + '">[Zoom link for poster session]</a></h6>';
+  else
+    return '';
+};
+
+const position_selector = (openreview) => {
+  const urlSession = getUrlParameter("session");
+  const positions = openreview.content.positions;
+  const sessions = openreview.content.session;
+  let position = ''
+  if (urlSession === sessions[0]) position = positions[0];
+  if (urlSession === sessions[1]) position = positions[1];
+  if (!(position === ''))
+    return '' + position + '.';
+  else
+    return '';
+};

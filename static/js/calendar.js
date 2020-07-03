@@ -2,7 +2,7 @@ function make_cal(name) {
 
     // console.log(location.search, "--- location.search");
 
-    const current_tz = getUrlParameter('tz') || moment.tz.guess();
+    const current_tz = getUrlParameter('tz').replace(' ','+') || moment.tz.guess();
     const tzNames = [...moment.tz.names()];
 
     const setupTZSelector = () => {
@@ -65,6 +65,7 @@ function make_cal(name) {
                 scheduleView: ['time'],
                 usageStatistics: false,
                 week: {
+                    startDayOfWeek: 3,
                     workweek: !config.calendar["sunday_saturday"],
                     hourStart: min_hours,
                     hourEnd: max_hours
@@ -94,7 +95,7 @@ function make_cal(name) {
                     },
                     weekDayname: function (model) {
                         const parts = model.renderDate.split('-');
-                        return '<span class="tui-full-calendar-dayname-name"> ' + parts[1] + '/' + parts[2] + '</span>&nbsp;&nbsp;<span class="tui-full-calendar-dayname-name">' + model.dayName + '</span>';
+                        return '<span class="tui-full-calendar-dayname-name" style="color: #222"> ' + parts[1] + '/' + parts[2] + '</span>&nbsp;&nbsp;<span class="tui-full-calendar-dayname-name" style="color: #222">' + model.dayName + '</span>';
                     },
                 },
             });
@@ -104,7 +105,7 @@ function make_cal(name) {
                 'clickSchedule': function (e) {
                     const s = e.schedule
                     if (s.location.length > 0) {
-                        window.open(s.location, '_blanket');
+                        window.open(s.location, '_self');
                     }
                 },
             })
@@ -120,6 +121,7 @@ function make_cal(name) {
                         id: k,
                         name: k,
                         bgColor: v,
+                        borderColor: v,
                     })
                 })
 
@@ -158,7 +160,7 @@ function make_cal(name) {
                     'clickSchedule': function (e) {
                         const s = e.schedule
                         if (s.location.length > 0) {
-                            window.open(s.location, '_blanket');
+                            window.open(s.location, '_self');
                         }
                     },
                 })
@@ -173,6 +175,7 @@ function make_cal(name) {
                             id: k,
                             name: k,
                             bgColor: v,
+                            borderColor: v,
                         })
                     })
 
@@ -195,6 +198,13 @@ function make_cal(name) {
 
             $(window).on('resize', _.debounce(function () {
                 all_cals.forEach(c => resize(c));
+                var interval = setInterval(function() {
+                  if ($(".tui-full-calendar-vlayout-area.tui-view-5.tui-full-calendar-vlayout-container").length > 0 && $(".tui-view-7").length > 0) {
+                     $(".tui-full-calendar-vlayout-area.tui-view-5.tui-full-calendar-vlayout-container").css("height", "1400px");
+                     $(".tui-view-7").css("height", "1400px");
+                     clearInterval(interval);
+                  }
+                }, 500);
             }, 100));
 
             // d3.selectAll('.tui-full-calendar-vlayout-area').attr('style',null);

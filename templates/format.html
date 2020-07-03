@@ -1,0 +1,88 @@
+{% set active_page = "Conference Format" %}
+{% set page_title = "Conference Format" %}
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Title -->
+<div class="pp-card m-3" style="">
+  <div class="card-header">
+    <h2 class="card-title main-title text-center" style="">
+      Conference Format
+    </h2>
+  </div>
+
+  <div id="zoom" style="padding-top: 60px"></div>
+  <div class="card-body">
+    <h3 class="text-center">Zoom Meetings</h3>
+    <div class="card-text">
+      <p>All of the Zoom meetings for the conference are password-protected to prevent abuse. Each registered participant will receive (by email) a password that will give access to the Zoom meetings.</p>
+    </div>
+  </div>
+
+  <div id="session" style="padding-top: 60px"></div>
+  <div class="card-body">
+    <h3 class="text-center">Session Format</h3>
+    <div class="card-text">
+      <p>Each session is divided into a <strong>plenary session</strong> and a <strong>poster session</strong>.</p>
+
+      <p>In the <strong>plenary session</strong>, each presenting author will give a short (1 minute) presentation of their work, followed by a short (2-3 minutes) question and answer period. The presentation order is prescribed in the individual session's page (see below).</p>
+
+      <p>After the plenary session (45-60 minutes total), the remaining time will be devoted to the <strong>poster session</strong>. Each author will have their own Zoom room dedicated to discussing their work, and participants can drop in to each room to ask questions.</p>
+
+      <ul>
+        <li><a href="{{zoom.plenary[0]}}">[Zoom link for plenary]</a></li>
+        <li>To find the <strong>Zoom links for the poster sessions</strong>, as well as the <strong>presentation order for the plenary session</strong>, please refer to each individual session's page:
+          <a href="papers.html?session=Session+1A">1A</a> &middot;
+          <a href="papers.html?session=Session+1B">1B</a> &middot;
+          <a href="papers.html?session=Session+1C">1C</a> &middot;
+          <a href="papers.html?session=Session+1D">1D</a> &middot;
+          <a href="papers.html?session=Session+1E">1E</a> &middot;
+          <a href="papers.html?session=Session+2A">2A</a> &middot;
+          <a href="papers.html?session=Session+2B">2B</a> &middot;
+          <a href="papers.html?session=Session+2C">2C</a> &middot;
+          <a href="papers.html?session=Session+2D">2D</a> &middot;
+          <a href="papers.html?session=Session+2E">2E</a> &middot;
+          <a href="papers.html?session=Session+3A">3A</a> &middot;
+          <a href="papers.html?session=Session+3B">3B</a> &middot;
+          <a href="papers.html?session=Session+3C">3C</a> &middot;
+          <a href="papers.html?session=Session+3D">3D</a> &middot;
+          <a href="papers.html?session=Session+3E">3E</a> &middot;
+          <a href="papers.html?session=Session+4A">4A</a> &middot;
+          <a href="papers.html?session=Session+4B">4B</a> &middot;
+          <a href="papers.html?session=Session+4C">4C</a> &middot;
+          <a href="papers.html?session=Session+4D">4D</a> &middot;
+          <a href="papers.html?session=Session+4E">4E</a> &middot;
+          <a href="papers.html?session=Session+OP">OP</a>
+        </li>
+      </ul>
+
+      <p>(Note that the Open Problems session (<a href="papers.html?session=Session+OP">OP</a>) does not have an accompanying poster session.)</p>
+
+    </div>
+  </div>
+
+  <div id="business" style="padding-top: 60px"></div>
+  <div class="card-body">
+    <h3 class="text-center">Business Meeting</h3>
+    <div class="card-text">
+      <p>Please join us Sunday 6:00 PM Paris time for the COLT Business Meeting to learn about and discuss this year's and future years' conference organization.</p>
+      <ul><li><a href="{{zoom.plenary[0]}}">[Zoom link for plenary]</a></li></ul>
+    </div>
+  </div>
+
+  <div id="coffee" style="padding-top: 60px"></div>
+  <div class="card-body">
+    <h3 class="text-center">Coffee Breaks</h3>
+    <div class="card-text">
+      <p>Please join us between sessions for virtual coffee breaks (or happy hours?), by entering any of these Zoom rooms:</p>
+      <ul>
+        {% for url in zoom.coffees %}
+        <li><a href="{{url}}">[Zoom link for break room {{loop.index}}]</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="padding-top:256px;"></div>
+{% endblock %}

@@ -35,29 +35,13 @@
       {% endfor %}
     </h3>
     <p class="card-text text-center">
-      <span class="">Subject areas:</span>
-      {% for keyword in paper.content.keywords %}
-      <a
-        href="papers.html?filter=keywords&search={{keyword}}"
-        class="text-secondary text-decoration-none"
-        >{{keyword}}</a
-      >{{ "," if not loop.last }}
-      {% endfor %}
-    </p>
-    <p class="card-text text-center">
       <span class="">Presented in:</span>
-      {% for session in paper.content.session %}
       <a
-        href="papers.html?filter=keywords&session={{session}}"
+        href="papers.html?filter=keywords&session=Session+OP"
         class="text-secondary text-decoration-none"
-        >{{session}}</a
-      >{{ "," if not loop.last }}
-      {% endfor %}
+        >Session OP</a>
     </p>
     <div class="text-center p-3">
-      <a class="card-link" data-toggle="collapse" role="button" href="#details">
-        Abstract
-      </a>
       {% if paper.link != blank %}
       <a class="card-link" target="_blank" href="{{paper.link}}">
         Paper
@@ -85,37 +69,18 @@
 
 <!-- Slides Live-->
 
-{{ components.section("Summary presentation") }}
+{{ components.section("Presentation") }}
 <div class="col-md-12 col-xs-12 my-auto p-2" >
-  <div id="presentation-embed-1min" class="slp my-auto"></div>
+  <div id="presentation-embed" class="slp my-auto"></div>
   <script src='https://slideslive.com/embed_presentation.js'></script>
   <script>
-    embed = new SlidesLiveEmbed('presentation-embed-1min', {
-    presentationId: '{{paper.content.slideslive_1 | default(config.default_presentation_id)}}',
+    embed = new SlidesLiveEmbed('presentation-embed', {
+    presentationId: '{{paper.content.slideslive | default(config.default_presentation_id)}}',
     autoPlay: false, // change to true to autoplay the embedded presentation
     verticalEnabled: true,
     verticalWhenWidthLte: 500,
     allowHiddenControlsWhenPaused: true,
     hideTitle: true
-    });
-  </script>
-</div>
-
-
-<!-- Slides Live-->
-
-{{ components.section("Full presentation") }}
-<div class="col-md-12 col-xs-12 my-auto p-2" >
-  <div id="presentation-embed-15min"></div>
-  <script src='https://slideslive.com/embed_presentation.js'></script>
-  <script>
-    embed = new SlidesLiveEmbed('presentation-embed-15min', {
-        presentationId: '{{paper.content.slideslive_2 | default(config.default_presentation_id)}}',
-        autoPlay: false, // change to true to autoplay the embedded presentation
-        verticalEnabled: true,
-        verticalWhenWidthLte: 500,
-        allowHiddenControlsWhenPaused: true,
-        hideTitle: true
     });
   </script>
 </div>

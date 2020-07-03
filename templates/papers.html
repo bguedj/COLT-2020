@@ -9,11 +9,10 @@
 
 <script src="static/js/icons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-
 {% endblock %}
 
 {% block tabs %}
-<ul class="nav nav-pills justify-content-center">
+<!-- <ul class="nav nav-pills justify-content-center">
   <li class="nav-item active">
     <a
       class="nav-link text-muted active"
@@ -28,7 +27,7 @@
   <li class="nav-item">
     <a class="nav-link text-muted" href="paper_vis.html">Visualization</a>
   </li>
-</ul>
+</ul> -->
 
 {% endblock %}
 
@@ -43,6 +42,7 @@
   >
     Showing papers for
     <span id="session_name" style="font-weight: bold;"></span>.
+    <span id="zoom_name" style="font-weight: bold;"><a href="{{zoom.plenary[0]}}">[Zoom link for plenary]</a></span>
     <button
       type="button"
       class="close remove_session"
@@ -56,7 +56,7 @@
 
 <!-- Buttons -->
 <div class="row">
-  <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+  <div class="col-12 col-sm-6 col-md-6 col-lg-3">
     <div class="input-group mb-3">
       <input
         type="text"
@@ -74,10 +74,23 @@
     </div>
   </div>
   <div
-    class="col-12 col-sm-6 col-md-6 col-lg-4 text-center"
+    class="col-12 col-sm-6 col-md-6 col-lg-3 text-center"
     style="margin-bottom: 10px;"
   >
     <div class="btn-group btn-group-toggle filter_option">
+      <label
+        class="btn btn-outline-secondary"
+        data-tippy-content="Search for authors/areas/title"
+      >
+        <input
+          type="radio"
+          name="options"
+          value="all"
+          autocomplete="off"
+          checked
+        />
+        all
+      </label>
       <label
         class="btn btn-outline-secondary"
         data-tippy-content="Search for papers titles"
@@ -93,7 +106,7 @@
       </label>
       <label
         class="btn btn-outline-secondary"
-        data-tippy-content="Search for papers with specific keywords"
+        data-tippy-content="Search for papers with specific subject area"
       >
         <input
           type="radio"
@@ -101,7 +114,7 @@
           value="keywords"
           autocomplete="off"
         />
-        keyword
+        area
       </label>
       <label
         class="btn btn-outline-secondary active"
@@ -112,17 +125,96 @@
       </label>
     </div>
   </div>
-  <div class="col-12 col-lg-4">
-    <button class="btn btn-outline-secondary reshuffle">shuffle</button>
-    <div class="float-right">
+  <div class="col-12 col-sm-6 col-md-6 col-lg-2 text-center">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Sessions
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" style="padding-left: 10px; max-height:200px; overflow:auto;">
+        <li><a href="papers.html?session=Session+1A">1A</a></li>
+        <li><a href="papers.html?session=Session+1B">1B</a></li>
+        <li><a href="papers.html?session=Session+1C">1C</a></li>
+        <li><a href="papers.html?session=Session+1D">1D</a></li>
+        <li><a href="papers.html?session=Session+1E">1E</a></li>
+        <li><a href="papers.html?session=Session+2A">2A</a></li>
+        <li><a href="papers.html?session=Session+2B">2B</a></li>
+        <li><a href="papers.html?session=Session+2C">2C</a></li>
+        <li><a href="papers.html?session=Session+2D">2D</a></li>
+        <li><a href="papers.html?session=Session+2E">2E</a></li>
+        <li><a href="papers.html?session=Session+3A">3A</a></li>
+        <li><a href="papers.html?session=Session+3B">3B</a></li>
+        <li><a href="papers.html?session=Session+3C">3C</a></li>
+        <li><a href="papers.html?session=Session+3D">3D</a></li>
+        <li><a href="papers.html?session=Session+3E">3E</a></li>
+        <li><a href="papers.html?session=Session+4A">4A</a></li>
+        <li><a href="papers.html?session=Session+4B">4B</a></li>
+        <li><a href="papers.html?session=Session+4C">4C</a></li>
+        <li><a href="papers.html?session=Session+4D">4D</a></li>
+        <li><a href="papers.html?session=Session+4E">4E</a></li>
+        <li><a href="papers.html?session=Session+OP">OP</a></li>
+      </ul> 
+  </div>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-1 text-center">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Areas
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu" style="padding-left: 10px; max-height:200px; overflow: auto; width: 340px;">
+        <li><a href="papers.html?filter=keywords&search=Active+learning">Active learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Adaptive+data+analysis">Adaptive data analysis</a></li>
+        <li><a href="papers.html?filter=keywords&search=Adversarial+learning+and+robustness">Adversarial learning and robustness</a></li>
+        <li><a href="papers.html?filter=keywords&search=Approximation+algorithms">Approximation algorithms</a></li>
+        <li><a href="papers.html?filter=keywords&search=Bandit+problems">Bandit problems</a></li>
+        <li><a href="papers.html?filter=keywords&search=Bayesian+methods">Bayesian methods</a></li>
+        <li><a href="papers.html?filter=keywords&search=Classification">Classification</a></li>
+        <li><a href="papers.html?filter=keywords&search=Clustering">Clustering</a></li>
+        <li><a href="papers.html?filter=keywords&search=Combinatorial+optimization">Combinatorial optimization</a></li>
+        <li><a href="papers.html?filter=keywords&search=Computational+complexity">Computational complexity</a></li>
+        <li><a href="papers.html?filter=keywords&search=Concentration+inequalities">Concentration inequalities</a></li>
+        <li><a href="papers.html?filter=keywords&search=Convex+optimization">Convex optimization</a></li>
+        <li><a href="papers.html?filter=keywords&search=Decision+Trees">Decision Trees</a></li>
+        <li><a href="papers.html?filter=keywords&search=Distribution+learning/testing">Distribution learning/testing</a></li>
+        <li><a href="papers.html?filter=keywords&search=Economics,+game+theory,+and+incentives">Economics, game theory, & incentives</a></li>
+        <li><a href="papers.html?filter=keywords&search=Excess+risk+bounds+and+generalization+error+bounds">Excess risk and gen. error bounds</a></li>
+        <li><a href="papers.html?filter=keywords&search=Halfspace+Learning">Halfspace Learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=High-dimensional+statistics">High-dimensional statistics</a></li>
+        <li><a href="papers.html?filter=keywords&search=Information+theory">Information theory</a></li>
+        <li><a href="papers.html?filter=keywords&search=Interactive+learning">Interactive learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Kernel+methods">Kernel methods</a></li>
+        <li><a href="papers.html?filter=keywords&search=Learning+from+complex/structured+data+(e.g.+networks,+time+series)">Learning from complex/structured data</a></li>
+        <li><a href="papers.html?filter=keywords&search=Learning+with+algebraic+or+combinatorial+structure">Learning with alg. or comb. structure</a></li>
+        <li><a href="papers.html?filter=keywords&search=Loss+functions">Loss functions</a></li>
+        <li><a href="papers.html?filter=keywords&search=Matrix/tensor+estimation">Matrix/tensor estimation</a></li>
+        <li><a href="papers.html?filter=keywords&search=Neural+networks/deep+learning">Neural networks/deep learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Neuroscience">Neuroscience</a></li>
+        <li><a href="papers.html?filter=keywords&search=Non-convex+optimization">Non-convex optimization</a></li>
+        <li><a href="papers.html?filter=keywords&search=Online+learning">Online learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=PAC+learning">PAC learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Partial+monitoring">Partial monitoring</a></li>
+        <li><a href="papers.html?filter=keywords&search=Planning+and+control">Planning and control</a></li>
+        <li><a href="papers.html?filter=keywords&search=Privacy,+fairness">Privacy, fairness</a></li>
+        <li><a href="papers.html?filter=keywords&search=Probabilistic+graphical+models">Probabilistic graphical models</a></li>
+        <li><a href="papers.html?filter=keywords&search=Randomized+linear+algebraic+methods+and+sketching">Randomized linear algebraic methods</a></li>
+        <li><a href="papers.html?filter=keywords&search=Ranking+and+preference+learning">Ranking and preference learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Regression">Regression</a></li>
+        <li><a href="papers.html?filter=keywords&search=Reinforcement+learning">Reinforcement learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Sampling+algorithms">Sampling algorithms</a></li>
+        <li><a href="papers.html?filter=keywords&search=Statistical+physics">Statistical physics</a></li>
+        <li><a href="papers.html?filter=keywords&search=Stochastic+optimization">Stochastic optimization</a></li>
+        <li><a href="papers.html?filter=keywords&search=Supervised+learning">Supervised learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=Unsupervised+and+semi-supervised+learning">Unsupervised and semi-supervised learning</a></li>
+        <li><a href="papers.html?filter=keywords&search=causal+inference">Causal inference</a></li>
+      </ul>
+  </div>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-1 text-center">
+    <button id="shuffle" class="btn btn-outline-secondary reshuffle">shuffle</button>
+  </div>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-2 text-center">
+    <!-- <div class="float-right"> -->
       <div
         class="btn-group btn-group-toggle render_option"
         data-toggle="buttons"
       >
-        <label class="btn btn-outline-secondary active">
+        <!-- <label class="btn btn-outline-secondary active">
           <input type="radio" name="options" value="list" autocomplete="off" />
           list
-        </label>
+        </label> -->
         <label class="btn btn-outline-secondary active">
           <input
             type="radio"
@@ -143,7 +235,7 @@
           detail
         </label>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </div>
 

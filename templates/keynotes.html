@@ -1,0 +1,26 @@
+{% set active_page = "Keynotes" %}
+{% set page_title = "Keynotes" %}
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Title -->
+<div class="pp-card m-3" style="">
+  <div class="card-header">
+    <h2 class="card-title main-title text-center" style="">
+      Keynotes
+    </h2>
+  </div>
+</div>
+<div id="details" class="pp-card m-3">
+  <div class="card-body">
+      <div class="text-center p-3">
+        <a href="{{zoom.plenary[0]}}">[Zoom link for plenary]</a>
+      </div>
+
+      <div class="speakers">
+        {{ components.speakergroup(day.speakers) }}
+      </div>
+  </div>
+</div>
+
+{% endblock %}
