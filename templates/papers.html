@@ -56,28 +56,22 @@
 
 <!-- Buttons -->
 <div class="row">
-  <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+  <div class="col-12 col-sm-6 col-md-6 col-lg-4">
     <div class="input-group mb-3">
       <input
         type="text"
         class="form-control typeahead_all"
         placeholder="Search"
+        style="width: 223px;"
       />
       <div class="input-group-append">
-        <button
+        <!-- <button
           class="btn btn-outline-secondary typeahead_all_clear"
           type="button"
         >
           &times;
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    class="col-12 col-sm-6 col-md-6 col-lg-3 text-center"
-    style="margin-bottom: 10px;"
-  >
-    <div class="btn-group btn-group-toggle filter_option">
+        </button> -->
+        <div class="btn-group btn-group-toggle filter_option">
       <label
         class="btn btn-outline-secondary"
         data-tippy-content="Search for authors/areas/title"
@@ -124,6 +118,8 @@
         author
       </label>
     </div>
+      </div>
+    </div>
   </div>
   <div class="col-12 col-sm-6 col-md-6 col-lg-2 text-center">
     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Sessions
@@ -152,7 +148,7 @@
         <li><a href="papers.html?session=Session+OP">OP</a></li>
       </ul> 
   </div>
-  <div class="col-12 col-sm-6 col-md-6 col-lg-1 text-center">
+  <div class="col-12 col-sm-6 col-md-6 col-lg-2 text-center">
     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">Areas
       <span class="caret"></span></button>
       <ul class="dropdown-menu" style="padding-left: 10px; max-height:200px; overflow: auto; width: 340px;">
@@ -202,7 +198,7 @@
         <li><a href="papers.html?filter=keywords&search=causal+inference">Causal inference</a></li>
       </ul>
   </div>
-  <div class="col-12 col-sm-6 col-md-6 col-lg-1 text-center">
+  <div class="col-12 col-sm-6 col-md-6 col-lg-2 text-center">
     <button id="shuffle" class="btn btn-outline-secondary reshuffle">shuffle</button>
   </div>
   <div class="col-12 col-sm-6 col-md-6 col-lg-2 text-center">
