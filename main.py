@@ -117,10 +117,10 @@ def conference_format():
     data["zoom"] = site_data["zoom"]
     return render_template("format.html", **data)
 
-@app.route("/subject_areas.html")
-def subject_areas():
-    data = _data()
-    return render_template("subject_areas.html", **data)
+#@app.route("/subject_areas.html")
+#def subject_areas():
+#    data = _data()
+#    return render_template("subject_areas.html", **data)
 
 @app.route("/plain.html")
 def plain():
