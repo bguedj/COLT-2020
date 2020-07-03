@@ -53,8 +53,8 @@ if __name__ == '__main__':
 
   with open(args.output, 'w') as f:
 #    print('<!DOCTYPE html>\n<html lang="en">\n<head>\n<title>COLT 2020 Schedule</title>\n</head>\n<body>\n<table border="1">', file=f)
-    print('{% set active_page = "(plain version)" %}', file=f)
-    print('{% set page_title = "Schedule (plain version)" %}', file=f)
+    print('{% set active_page = "(plain schedule)" %}', file=f)
+    print('{% set page_title = "The No-Frills Schedule" %}', file=f)
     print('{% extends "base.html" %}', file=f)
     print('{% block content %}', file=f)
     print('<table border="1">', file=f)
