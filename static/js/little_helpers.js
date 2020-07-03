@@ -15,8 +15,8 @@ function setQueryStringParameter(name, value) {
 
 const initTypeAhead = (list, css_sel, name, callback) => {
     const bh = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        datumTokenizer: Bloodhound.tokenizers.nonword,
+        queryTokenizer: Bloodhound.tokenizers.nonword,
         local: list,
         sufficient: 20,
         identify: function(obj) { return obj; },
@@ -44,9 +44,9 @@ const initTypeAhead = (list, css_sel, name, callback) => {
           hint: true,
           highlight: true, /* Enable substring highlighting */
         minLength: 0, /* Specify minimum characters required for showing suggestions */
-        limit:20
+        limit: 20,
       },
-      {name, source: bhDefaults})
+      {name, source: bhDefaults, limit:20})
       .on('keydown', function (e) {
           if (e.which === 13) {
               // e.preventDefault();
