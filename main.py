@@ -323,7 +323,8 @@ if __name__ == "__main__":
     if args.build:
         freezer.freeze()
         with open("build/.htaccess", "w") as f:
-            f.write('ModPagespeedDisallow "*"')
+            f.write('ModPagespeedDisallow "*"\n')
+            f.write('Options -Indexes\n')
     else:
         debug_val = False
         if os.getenv("FLASK_DEBUG") == "True":
