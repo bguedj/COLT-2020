@@ -28,7 +28,7 @@ def main(site_data_path):
         elif typ == "yml":
             site_data[name] = yaml.load(open(f).read(), Loader=yaml.SafeLoader)
 
-    for typ in ["papers", "speakers", "open_problems"]:
+    for typ in ["papers", "speakers", "open_problems", "pdfs"]:
         by_uid[typ] = {}
         for p in site_data[typ]:
             by_uid[typ][p["UID"]] = p
@@ -213,10 +213,12 @@ def poster(poster):
     if 'OP' in uid:
         v = by_uid["open_problems"][uid]
         data["paper"] = format_open_problem(v)
+        data["pdfs"] = by_uid["pdfs"][uid]
         return render_template("open_problem.html", **data)
     else:
         v = by_uid["papers"][uid]
         data["paper"] = format_paper(v)
+        data["pdfs"] = by_uid["pdfs"][uid]
         return render_template("poster.html", **data)
 
 

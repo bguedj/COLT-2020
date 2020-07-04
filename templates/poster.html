@@ -35,6 +35,9 @@
       {% endfor %}
     </h3>
     <p class="card-text text-center">
+      <a href="/pdfs/{{pdfs.filename}}.pdf" class="text-secondary text-decoration-none" >{{pdfs.filename}}.pdf</a>
+    </p>
+    <p class="card-text text-center">
       <span class="">Subject areas:</span>
       {% for keyword in paper.content.keywords %}
       <a
