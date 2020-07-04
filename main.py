@@ -213,12 +213,12 @@ def poster(poster):
     if 'OP' in uid:
         v = by_uid["open_problems"][uid]
         data["paper"] = format_open_problem(v)
-        data["pdfs"] = by_uid["pdfs"][uid]
+        data["pdfs"] = extract_list_field(by_uid["pdfs"][uid], 'filename')
         return render_template("open_problem.html", **data)
     else:
         v = by_uid["papers"][uid]
         data["paper"] = format_paper(v)
-        data["pdfs"] = by_uid["pdfs"][uid]
+        data["pdfs"] = extract_list_field(by_uid["pdfs"][uid], 'filename')
         return render_template("poster.html", **data)
 
 

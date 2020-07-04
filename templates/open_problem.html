@@ -36,7 +36,12 @@
     </h3>
     <p class="card-text text-center">
       <span class="">Paper:</span>
-      <a href="/pdfs/{{pdfs.filename}}.pdf" class="text-secondary text-decoration-none" >{{pdfs.filename}}.pdf</a>
+      {% for filename in pdfs %}
+      <a
+        href="/pdfs/{{filename}}.pdf"
+        class="text-secondary text-decoration-none" >{{filename}}.pdf</a
+      >{{ "," if not loop.last }}
+      {% endfor %}
     </p>
     <p class="card-text text-center">
       <span class="">Presented in:</span>
