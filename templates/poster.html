@@ -54,6 +54,17 @@
       >{{ "," if not loop.last }}
       {% endfor %}
     </p>
+    {% if not paper.content.zoom == 0 %}
+    <p class="card-text text-center">
+      {% for session in paper.content.session %}
+      [<a
+         href="{{paper.content.zoom[loop.index0]}}"
+        class="text-secondary text-decoration-none"
+        >Zoom link for poster in {{paper.content.session[loop.index0]}}</a
+      >]{{ "," if not loop.last }}
+      {% endfor %}
+    </p>
+    {% endif %}
     <div class="text-center p-3">
       <a class="card-link" data-toggle="collapse" role="button" href="#details">
         Abstract

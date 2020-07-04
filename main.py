@@ -185,6 +185,7 @@ def format_open_problem(v):
             "keywords": ["Open problem"],
             "session": ["Session OP"],
             "positions": [v["position"]],
+            "zoom": 0,
          },
      }
 
