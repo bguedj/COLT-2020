@@ -34,6 +34,9 @@ if __name__ == '__main__':
     elif event['title'].find('Business') >= 0:
       link = 'format.html#business'
       event_type = 'business'
+    elif event['title'].find('WIML') >= 0:
+      link = 'https://wimlworkshop.org/sh_events/wiml-colt/'
+      event_type = 'business'
     else:
       link = ''
       event_type = '---'
