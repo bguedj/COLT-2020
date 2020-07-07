@@ -14,6 +14,8 @@ const filters = {
     all: null,
 };
 
+let chairs = {};
+
 let render_mode = 'compact';
 
 const persistor = new Persistor('Mini-Conf-Papers');
@@ -121,6 +123,7 @@ const updateSession = () => {
     if (urlSession) {
         filters['session'] = urlSession;
         d3.select('#session_name').text(urlSession);
+        d3.select('#session_chair').text(chairs[urlSession]);
         d3.select('#shuffle').style("visibility", "hidden");
         d3.select('.session_notice').classed('d-none', null);
         return true;
@@ -140,8 +143,14 @@ const start = () => {
     updateFilterSelectionBtn(urlFilter)
 
 
+    d3.json('serve_chairs.json').then(data => {
+      for (d of data) {
+        chairs[d['UID']] = d['chair'];
+      }
+    });
+
     d3.json('papers.json').then(papers => {
-        console.log(papers, "--- papers");
+        // console.log(papers, "--- papers");
 
         // shuffleArray(papers);
 
