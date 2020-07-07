@@ -72,7 +72,7 @@ if __name__ == '__main__':
         desc = event['title']
       if event['title'].find('Session ') >= 0:
         desc += ' (Session chair: {0})<br />\n<a href="{1}">[Zoom link for plenary]</a>'.format(chairs[event['title']], zoom['plenary'][0])
-      if (event['title'].find('Session ') >= 0) or (event['title'].find('Keynote ') >= 0) or (event['title'].find('Open Problems') >= 0) or (event['title'].find('Business Meeting') >= 0):
+      elif (event['title'].find('Session ') >= 0) or (event['title'].find('Keynote ') >= 0) or (event['title'].find('Open Problems') >= 0) or (event['title'].find('Business Meeting') >= 0):
         desc += '<br />\n<a href="{0}">[Zoom link for plenary]</a>'.format(zoom['plenary'][0])
       start = datetime.datetime.strptime(event['start'],"%Y-%m-%dT%H:%M:%S%z").astimezone(pytz.timezone('Etc/GMT+12'))
       start_date = start.strftime('%A %Y-%m-%d')
