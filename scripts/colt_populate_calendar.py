@@ -26,7 +26,7 @@ if __name__ == '__main__':
       link = 'speaker_{0}.html'.format(event['title'][event['title'].find('Keynote') + 8])
       event_type = 'keynote'
     elif event['title'].find('Coffee') >= 0:
-      link = 'format.html#coffee'
+      link = 'format.html?break={}#coffee'.format(event['title'].split(' ')[2])
       event_type = 'coffee'
     elif event['title'].find('Open Problems') >= 0:
       link = SESSION_LINK_FMT.format('Session+OP')

@@ -72,16 +72,28 @@
 
   <div id="coffee" style="padding-top: 60px"></div>
   <div class="card-body">
-    <h3 class="text-center">Coffee Breaks</h3>
+    <h3 class="text-center">Coffee Break <span id="break-id">s</span></h3> 
     <div class="card-text">
       <p>Please join us between sessions for virtual coffee breaks (or happy hours?), by entering any of these Zoom rooms:</p>
-      <ul>
         {% for url in zoom.coffees %}
-        <li><a href="{{url}}">[Zoom link for break room {{loop.index}}]</a></li>
+        <li>Break room {{loop.index}}: <a href="{{url}}">[Zoom link]</a><span id="host-{{loop.index}}"></span></li>
         {% endfor %}
-      </ul>
+      </ul>      
     </div>
+    <div id="baidu" style="visibility: hidden;">
+      <br>
+      <h5>Sponsor Virtual Booth</h5> 
+      <p>In this coffee break, please drop by our sponsor Baidu's virtual booth <a href="https://us02web.zoom.us/j/85972218151">[Zoom link]</a></p>
+    </div>
+    <script src="static/js/little_helpers.js"></script>
+    <script src="static/js/coffee_hosts.js"></script>
+    <script>
+    $(document).ready(function () {
+      start();
+    });
+    </script>
   </div>
+  
 
   <div id="czars" style="padding-top: 60px"></div>
   <div class="card-body">
