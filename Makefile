@@ -47,6 +47,7 @@ colt:
 	python3 scripts/colt_ingest.py sitedata/zoom.yml coltdata/papers_clustered_an.csv coltdata/slideslive.csv sitedata/papers.csv
 	python3 scripts/parse_calendar.py --ics coltdata/colt.ics --out coltdata/colt-calendar.json
 	python3 scripts/colt_populate_calendar.py sitedata/zoom.yml coltdata/colt-calendar.json sitedata/main_calendar.json
+	python3 scripts/gen_hosts.py coltdata/coffee_break_hosts.csv sitedata/coffee_hosts.csv
 
 colt-plain:
 	python3 scripts/colt_sched.py sitedata/zoom.yml sitedata/papers.csv sitedata/open_problems.csv sitedata/main_calendar.json sitedata/chairs.csv templates/plain.html
