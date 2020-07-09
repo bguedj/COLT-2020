@@ -75,6 +75,7 @@
     <h3 class="text-center">Coffee Break<span id="break-id">s</span></h3> 
     <div class="card-text">
       <p>Please join us between sessions for virtual coffee breaks (or happy hours?), by entering any of these Zoom rooms:</p>
+      <ul>
         {% for url in zoom.coffees %}
         <li>Break room {{loop.index}}: <a href="{{url}}">[Zoom link]</a><span id="host-{{loop.index}}"></span></li>
         {% endfor %}
