@@ -71,9 +71,9 @@ if __name__ == '__main__':
       else:
         desc = event['title']
       if event['title'].find('Session ') >= 0:
-        desc += ' (Session chair: {0})<br />\n<a href="{1}">[Zoom link for plenary]</a>'.format(chairs[event['title']], zoom['plenary'][0])
+        desc += ' (Session chair: {0})<br />\n<a href="{1}" target="_blank">[Zoom link for plenary]</a>'.format(chairs[event['title']], zoom['plenary'][0])
       elif (event['title'].find('Session ') >= 0) or (event['title'].find('Keynote ') >= 0) or (event['title'].find('Open Problems') >= 0) or (event['title'].find('Business Meeting') >= 0):
-        desc += '<br />\n<a href="{0}">[Zoom link for plenary]</a>'.format(zoom['plenary'][0])
+        desc += '<br />\n<a href="{0}" target="_blank">[Zoom link for plenary]</a>'.format(zoom['plenary'][0])
       start = datetime.datetime.strptime(event['start'],"%Y-%m-%dT%H:%M:%S%z").astimezone(pytz.timezone('Etc/GMT+12'))
       start_date = start.strftime('%A %Y-%m-%d')
       start_time = start.strftime('%H:%M <a href="https://www.timeanddate.com/time/zones/aoe">AoE</a>')
@@ -96,7 +96,7 @@ if __name__ == '__main__':
           title = paper['title']
           authors = ', '.join(paper['authors'].split('|'))
           zoom_link = paper_key['zoom']
-          desc = '<a href="papers/paper_{0}.html"><strong>{1}</strong></a><br />{2}<br /><a href="{3}">[Zoom link for poster session]</a>'.format(uid, title, authors, zoom_link)
+          desc = '<a href="papers/paper_{0}.html"><strong>{1}</strong></a><br />{2}<br /><a href="{3}" target="_blank">[Zoom link for poster session]</a>'.format(uid, title, authors, zoom_link)
           print('  <tr><td></td><td style="padding: 5px">{0}. {1}</td></tr>\n'.format(position, desc), file=f)
     #print('</table>\n</body>\n</html>', file=f)
     print('</table>', file=f)
