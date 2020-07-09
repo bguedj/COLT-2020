@@ -117,6 +117,12 @@ def conference_format():
     data["zoom"] = site_data["zoom"]
     return render_template("format.html", **data)
 
+@app.route("/format-shuffle.html")
+def conference_format_shuffle():
+    data = _data()
+    data["zoom"] = site_data["zoom"]
+    return render_template("format-shuffle.html", **data)    
+
 @app.route("/news.html")
 def news():
     data = _data()
