@@ -30,7 +30,7 @@
       <p>After the plenary session (45-60 minutes total), the remaining time will be devoted to the <strong>poster session</strong>. Each author will have their own Zoom room dedicated to discussing their work, and participants can drop in to each room to ask questions.</p>
 
       <ul>
-        <li><a href="{{zoom.plenary[0]}}">[Zoom link for plenary]</a></li>
+        <li><a href="{{zoom.plenary[0]}}" target="_blank">[Zoom link for plenary]</a></li>
         <li>To find the <strong>Zoom links for the poster sessions</strong>, as well as the <strong>presentation order for the plenary session</strong>, please refer to each individual session's page:
           <a href="papers.html?session=Session+1A">1A</a> &middot;
           <a href="papers.html?session=Session+1B">1B</a> &middot;
@@ -66,7 +66,7 @@
     <h3 class="text-center">Business Meeting</h3>
     <div class="card-text">
       <p>Please join us Sunday 6:00 PM Paris time for the COLT Business Meeting to learn about and discuss this year's and future years' conference organization.</p>
-      <ul><li><a href="{{zoom.plenary[0]}}">[Zoom link for plenary]</a></li></ul>
+      <ul><li><a href="{{zoom.plenary[0]}}" target="_blank">[Zoom link for plenary]</a></li></ul>
     </div>
   </div>
 
@@ -77,14 +77,14 @@
       <p>Please join us between sessions for virtual coffee breaks (or happy hours?), by entering any of these Zoom rooms:</p>
       <ul>
         {% for url in zoom.coffees %}
-        <li>{% if loop.last %}Student break room{% else %}Break room {{loop.index}}{% endif %}: <a href="{{url}}">[Zoom link]</a><span id="host-{{loop.index}}"></span></li>
+        <li>{% if loop.last %}Student break room{% else %}Break room {{loop.index}}{% endif %}: <a href="{{url}}" target="_blank">[Zoom link]</a><span id="host-{{loop.index}}"></span></li>
         {% endfor %}
       </ul>      
     </div>
     <div id="baidu" style="visibility: hidden;">
       <br>
       <h5>Sponsor Virtual Booth</h5> 
-      <p>In this coffee break, please drop by our sponsor Baidu's virtual booth <a href="{{zoom.sponsor[0]}}">[Zoom link]</a></p>
+      <p>In this coffee break, please drop by our sponsor Baidu's virtual booth <a href="{{zoom.sponsor[0]}}" target="_blank">[Zoom link]</a></p>
     </div>
     <script src="static/js/little_helpers.js"></script>
     <script src="static/js/coffee_hosts.js"></script>

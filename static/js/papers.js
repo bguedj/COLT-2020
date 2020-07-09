@@ -298,7 +298,7 @@ const zoom_selector = (openreview) => {
   if (urlSession === sessions[0]) link = zoom_links[0];
   if (urlSession === sessions[1]) link = zoom_links[1];
   if (!(link === ''))
-    return '<br /><h6 class="card-subtitle" align="center"> <a href="' + link + '">[Zoom link for poster session]</a></h6>';
+    return '<br /><h6 class="card-subtitle" align="center"> <a href="' + link + '" target="_blank">[Zoom link for poster session]</a></h6>';
   else
     return '';
 };
