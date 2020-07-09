@@ -1,0 +1,29 @@
+{% set active_page = "Conference Format" %}
+{% set page_title = "Conference Format" %}
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Title -->
+<div class="pp-card m-3" style="">
+  <div class="card-header">
+    <h2 class="card-title main-title text-center" style="">
+      Announcements
+    </h2>
+  </div>
+
+  <div id="best-paper" style="padding-top: 60px"></div>
+  <div class="card-body">
+    <h3 class="text-center">Paper Awards</h3>
+    <div class="card-text">
+      <h5>Best Paper Award</h5> 
+      <p><a href="https://www.colt2020.org/virtual/papers/paper_309.html">Proper Learning, Helly Number, and an Optimal SVM Bound</a> by Nikita Zhivotovskiy, Steve Hanneke, Olivier Bousquet, and Shay Moran. <br>Presented in <a href="https://www.colt2020.org/virtual/papers.html?filter=keywords&session=Session+1B">Session 1B</a> and <a href="https://www.colt2020.org/virtual/papers.html?filter=keywords&session=Session+1D">Session 1D</a>. Congratulations to the authors!</p>
+
+      <h5>Best Student Paper Award</h5> 
+      <p><a href="https://www.colt2020.org/virtual/papers/paper_396.html">Reducibility and Statistical-Computational Gaps from Secret Leakage</a> by Matthew Brennan and Guy Bresler.<br>
+      Presented in <a href="https://www.colt2020.org/virtual/papers.html?filter=keywords&session=Session+4A">Session 4A</a> and <a href="https://www.colt2020.org/virtual/papers.html?filter=keywords&session=Session+4C">Session 4C</a>.  Congratulations to the authors!</p>
+    </div>
+  </div>
+</div>
+
+<div style="padding-top:256px;"></div>
+{% endblock %}
