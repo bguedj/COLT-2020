@@ -19,7 +19,7 @@ const start = () => {
 				}
 			}
 			if (found["GRAD Student Coffee Room"] !== "") {
-				d3.select("#host-5").text(" Student room hosted by " + found["GRAD Student Coffee Room"] + ".");	
+				d3.select("#host-5").text(" Hosted by " + found["GRAD Student Coffee Room"] + ".");	
 			}
 		}
 
