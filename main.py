@@ -115,13 +115,7 @@ def keynotes():
 def conference_format():
     data = _data()
     data["zoom"] = site_data["zoom"]
-    return render_template("format.html", **data)
-
-@app.route("/format-shuffle.html")
-def conference_format_shuffle():
-    data = _data()
-    data["zoom"] = site_data["zoom"]
-    return render_template("format-shuffle.html", **data)    
+    return render_template("format.html", **data)   
 
 @app.route("/news.html")
 def news():
