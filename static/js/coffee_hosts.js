@@ -32,6 +32,12 @@ const start = () => {
 }
 
 const startshuff = () => {
+	const urlFilter = getUrlParameter("break") || '';
+
+	if (urlFilter === "1C" || urlFilter === "2C") {
+		d3.select("#baidu").style("visibility", "visible");
+	}
+	
 	d3.json('serve_zoom.json').then(data => {
 		const coffees = data['coffees'];
 		let names_links = [['Latte', coffees[0]], ['Macchiato', coffees[1]], ['Cortado', coffees[2]], ['Mocha', coffees[3]]];
