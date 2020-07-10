@@ -68,6 +68,7 @@
       {% for session in paper.content.session %}
       [<a
          href="{{paper.content.zoom[loop.index0]}}"
+         target="_blank"
         class="text-secondary text-decoration-none"
         >Zoom link for poster in {{paper.content.session[loop.index0]}}</a
       >]{{ "," if not loop.last }}
