@@ -143,13 +143,13 @@ const start = () => {
     updateFilterSelectionBtn(urlFilter)
 
 
-    d3.json('serve_chairs.json?nocache=' + (new Date()).getTime()).then(data => {
+    d3.json('serve_chairs.json').then(data => {
       for (d of data) {
         chairs[d['UID']] = d['chair'];
       }
     });
 
-    d3.json('papers.json?nocache=' + (new Date()).getTime()).then(papers => {
+    d3.json('papers.json').then(papers => {
         // console.log(papers, "--- papers");
 
         // shuffleArray(papers);
