@@ -32,7 +32,7 @@ def main(site_data_path):
         by_uid[typ] = {}
         for p in site_data[typ]:
             by_uid[typ][p["UID"]] = p
-
+    print(site_data["pdfs"])
     print("Data Successfully Loaded")
     return extra_files
 
@@ -218,12 +218,12 @@ def poster(poster):
     if 'OP' in uid:
         v = by_uid["open_problems"][uid]
         data["paper"] = format_open_problem(v)
-        data["pdfs"] = extract_list_field(by_uid["pdfs"][uid], 'filename')
+        data["pdfs"] = by_uid["pdfs"][uid]
         return render_template("open_problem.html", **data)
     else:
         v = by_uid["papers"][uid]
         data["paper"] = format_paper(v)
-        data["pdfs"] = extract_list_field(by_uid["pdfs"][uid], 'filename')
+        data["pdfs"] = by_uid["pdfs"][uid]
         return render_template("poster.html", **data)
 
 

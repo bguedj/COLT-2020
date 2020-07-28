@@ -35,13 +35,11 @@
       {% endfor %}
     </h3>
     <p class="card-text text-center">
-      <span class="">Temporary paper link:</span>
-      {% for filename in pdfs %}
+      <span class="">Paper:</span>
       <a
-        href="/pdfs/{{filename}}.pdf"
-        class="text-secondary text-decoration-none" >{{filename}}.pdf</a
-      >{{ "," if not loop.last }}
-      {% endfor %}
+        href="http://proceedings.mlr.press/v125/{{pdfs.filename}}/{{pdfs.filename}}.pdf"
+        class="text-secondary text-decoration-none" >[PDF]</a
+      >
     </p>
     <p class="card-text text-center">
       <span class="">Presented in:</span>
