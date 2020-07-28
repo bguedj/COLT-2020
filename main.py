@@ -32,7 +32,7 @@ def main(site_data_path):
         by_uid[typ] = {}
         for p in site_data[typ]:
             by_uid[typ][p["UID"]] = p
-    print(site_data["pdfs"])
+            
     print("Data Successfully Loaded")
     return extra_files
 
