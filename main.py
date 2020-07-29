@@ -327,6 +327,8 @@ if __name__ == "__main__":
 
     if args.build:
         freezer.freeze()
+        with open("build/zoom.html", "w") as f:
+            f.write("<html><body><h1>The conference is over!</h1></body></html>")
         with open("build/.htaccess", "w") as f:
 #            f.write('ModPagespeedDisallow "*"\n')
             f.write('Options -Indexes\n')
